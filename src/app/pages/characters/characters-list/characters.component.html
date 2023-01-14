@@ -1,0 +1,14 @@
+<div class="flex flex-col gap-4">
+  <div class="flex justify-end">
+    <app-search (searchToFind)="searchToFind($event)"/>
+  </div>
+  <div *ngIf="result" class="flex gap-4 flex-wrap">
+    <div *ngFor="let item of result.results">
+      <div class="p-4 flex flex-col justify-center items-center gap-2 w-48 rounded-xl bg-gray-50">
+        <img class="rounded-full w-28" [src]="item.image">
+        <h1 class="font-medium text-amber-500">{{item.name}}</h1>
+      </div>
+    </div>
+  </div>
+</div>
+

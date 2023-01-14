@@ -1,0 +1,8 @@
+<div *ngIf="result" class="flex gap-4 flex-wrap">
+  <div *ngFor="let item of result.results">
+    <div class="p-4 flex flex-col justify-center items-center gap-2 w-48 rounded-xl bg-gray-50">
+        <h1>Episode - <span class="font-medium text-amber-500">{{item.episode}}</span> </h1>
+        <h3 class="text-xs">Air date - <span class="text-amber-500">{{item.air_date}}</span> </h3>
+    </div>
+  </div>
+</div>

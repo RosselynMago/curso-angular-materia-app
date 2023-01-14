@@ -1,0 +1,19 @@
+.unstyle {
+  all: unset;
+}
+
+.svg-icon {
+  width: 1em;
+  height: 1em;
+}
+
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+  fill: #fbbf24;
+}
+
+.svg-icon circle {
+  stroke: #fbbf24;
+  stroke-width: 1;
+}
