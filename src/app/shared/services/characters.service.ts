@@ -10,7 +10,13 @@ import { CharactersList } from 'src/app/interfaces/characters.interface';
 
 export class CharactersService {
   constructor (private http: HttpClient){}
+
   getCharacters(): Observable<CharactersList>{
     return this.http.get<CharactersList>(env.api_url+'character');
   }
+
+  getCharactersByName(value: string): Observable<CharactersList>{
+    return this.http.get<CharactersList>(env.api_url+'character/?name='+value);
+  }
+
 }

@@ -1,6 +1,8 @@
+import { CharactersService } from './../../../shared/services/characters.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CharactersList } from 'src/app/interfaces/characters.interface';
+import { of, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-characters',
@@ -10,7 +12,9 @@ import { CharactersList } from 'src/app/interfaces/characters.interface';
 export class CharactersComponent implements OnInit {
   result!: CharactersList;
 
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private charactersService: CharactersService) { }
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({data})  => {
@@ -19,6 +23,9 @@ export class CharactersComponent implements OnInit {
   }
 
   searchToFind(value : string){
-    // console.log(value)
+   this.charactersService.getCharactersByName(value)
+    .subscribe(data => {
+      this.result = data;
+    })
   }
 }

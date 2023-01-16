@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { filter } from 'rxjs';
-import { distinctUntilChanged, map } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search',
@@ -24,13 +24,10 @@ export class SearchComponent implements OnInit {
 
   inputChanges(){
     this.inputControl.valueChanges.pipe(
-      map(value => value.trim()),
-      filter(value => value.toString().trim() != "" && value != null),
-      distinctUntilChanged()
+      filter(value => value.trim() != "" && value != null),
+      distinctUntilChanged(),
+      debounceTime(500)
     ).subscribe(value => this.searchToFind.emit(value))
   }
-}
-function eventEmitter<T>() {
-  throw new Error('Function not implemented.');
 }
 
